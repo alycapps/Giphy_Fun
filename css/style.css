@@ -3,5 +3,15 @@ body {
 }
 
 #giphy {
-float: right;
+    float: right;
+}
+
+#gifsloc {
+    width: 75%;
+    float: left;
+}
+
+#showformloc {
+    width: 25%;
+    float: right;
 }
