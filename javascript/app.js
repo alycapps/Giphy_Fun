@@ -38,6 +38,10 @@ $("#searchbutton").on("click", function() {
     var enteredshow = $("#gifsearch").val()
     topics.push(enteredshow);
     console.log(topics);
+
+    //FIX ERROR FOR BELOW LINE 
+    $("#gifsearch").val("");
+    console.log("value: " + $("#gifsearch").val())
     makeButtons();
 });
 
