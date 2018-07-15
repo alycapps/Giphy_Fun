@@ -30,15 +30,17 @@ makeButtons();
             url: queryURL,
             method: "GET"
             }).then(function(response) {
-                console.log("you did an ajax call")
-                console.log(response);
-                console.log("url: " + response.data[3].images.fixed_height_small.url);
+                // console.log(response);
+                // console.log("url: " + response.data[0].images.fixed_height_still.url);
 
-
-                var gifURL = response.data[3].images.fixed_height_small.url;
-                var p = $("<p>")
-                $(p).attr("src", gifURL);
-                $("#gifsloc").prepend(p); 
+                for (j=0; j<10; j++) {
+                    var gifURL = response.data[j].images.fixed_height_still.url;
+                    var img = $("<img>")
+                    $(img).attr("src", gifURL);
+                    var p = $("<p>").text("Rating: " + response.data[j].rating);
+                    $("#gifsloc").prepend(p); 
+                    $("#gifsloc").prepend(img); 
+                };
 
             });
     });
