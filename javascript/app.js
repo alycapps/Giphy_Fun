@@ -15,7 +15,6 @@ function makeButtons() {
 }
 makeButtons();
 
-    // Add for each to displaygifs
     $(document).on("click", ".tvbttn", function() {
         console.log("you clicked a tv show");
         //variable to hold name of show button clicked
@@ -31,9 +30,7 @@ makeButtons();
             method: "GET"
             }).then(function(response) {
                 console.log(response);
-                // console.log("url: " + response.data[0].images.fixed_height_still.url);
-                // var stillurl = response.data[j].images.fixed_height_still.url;
-                // var animatedurl = response.data[j].url;
+               
                 for (j=0; j<10; j++) {
                     var gifURL = response.data[j].images.fixed_height_still.url;
                     var img = $("<img>")
@@ -52,13 +49,11 @@ makeButtons();
                     var state = $(this).attr("data-state");
                     console.log(this);
                     if (state === "still") {
-                        console.log("it was a still state and should animate");
                         console.log($(this).attr("data-animate"));
                       $(this).attr("src", $(this).attr("data-animate"));
                       $(this).attr("data-state", "animate");
                     } 
                     else {
-                        console.log("it was animated and should be still now");
                       $(this).attr("src", $(this).attr("data-still"));
                       $(this).attr("data-state", "still");
                     }
@@ -71,10 +66,8 @@ makeButtons();
 //push entry to array
 $("#searchbutton").on("click", function() {
     event.preventDefault();
-    // console.log("click function ran");
     var enteredshow = $("#gifsearch").val()
     topics.push(enteredshow);
-    // console.log(topics);
 
     //clear form after entry has been added to array
     $("#gifsearch").val("");
