@@ -18,8 +18,8 @@ makeButtons();
     // Add for each to displaygifs
     $(document).on("click", ".tvbttn", function() {
         console.log("you clicked a tv show");
+        //variable to hold name of show button clicked
         var showchoice = $(this).attr("data-name");
-        // console.log(this.val());
         console.log("showchoice: " + showchoice)
 
         var key = "TB7eTP6O2J0VXAlUwCLj7T96z55fYByl";
@@ -30,40 +30,43 @@ makeButtons();
             url: queryURL,
             method: "GET"
             }).then(function(response) {
-                // console.log(response);
+                console.log(response);
                 // console.log("url: " + response.data[0].images.fixed_height_still.url);
-
+                // var stillurl = response.data[j].images.fixed_height_still.url;
+                // var animatedurl = response.data[j].url;
                 for (j=0; j<10; j++) {
                     var gifURL = response.data[j].images.fixed_height_still.url;
                     var img = $("<img>")
                     $(img).attr("src", gifURL);
+                    $(img).attr("data-still", response.data[j].images.fixed_height_still.url);
+                    $(img).attr("data-animate", response.data[j].images.fixed_height.url);
+                    $(img).attr("data-state", "still");
+                    $(img).attr("src", $(this).attr("data-animate"))
                     var p = $("<p>").text("Rating: " + response.data[j].rating);
                     $("#gifsloc").prepend(p); 
                     $("#gifsloc").prepend(img); 
                 };
 
+                    // click handler for animating gifs and returning to still state
+                $("img").on("click", function() {
+                    var state = $(this).attr("data-state");
+                    console.log(this);
+                    if (state === "still") {
+                        console.log("it was a still state and should animate");
+                        console.log($(this).attr("data-animate"));
+                      $(this).attr("src", $(this).attr("data-animate"));
+                      $(this).attr("data-state", "animate");
+                    } 
+                    else {
+                        console.log("it was animated and should be still now");
+                      $(this).attr("src", $(this).attr("data-still"));
+                      $(this).attr("data-state", "still");
+                    }
+                  });
+
             });
     });
 
-        // $(".tvbttn").on("click", function() {
-        //     for (s=0; s<10; s++) {
-        //         var choice = $(".tvbttn").val();
-        //         var static = response.data[s].images.fixed_height_small.url;
-        //         $("#gifsloc").append(static);
-        //     };
-        // });
-        
-
-
-
-//display gif and info required
-//trying this above without
-// function displaygif() {
-//     console.log("displaygif function ran");
-//     var show = $(".tvbttn").val();
-
-//     $("#gifsloc").append();
-// }
 
 //push entry to array
 $("#searchbutton").on("click", function() {
