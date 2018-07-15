@@ -1,4 +1,4 @@
-var topics = ["Doctor Who", "Battlestar Galactica", "Star Wars", "Torchwood", "Lord of the Rings", "Game of Thrones", "Sherlock", "Warehouse 13", "Star Trek"];
+var topics = ["Doctor Who", "Battlestar Galactica", "Star Wars", "Lord of the Rings", "Game of Thrones", "Sherlock", "Star Trek"];
 
 //create buttons from topics array
 function makeButtons() {
